@@ -1,0 +1,49 @@
+HM69J-FU0D7-W8C89-0V3HK-3H16K,VMWARECODE.
+this is my first file
+this is my last notification
+systemctl stop iptables
+ iptables -t nat -L
+    creating group/users.
+1) Copy /etc/fstab to /var/tmp/fstab. 
+Make "admin" group as owner to this new file and give full permission. 
+Give "natasha" user "rw" permission, 
+"harry" should not have permission, 
+and rest of them has read only permissions
+   09  groupadd tennis
+   10  useradd natasha
+   11  useradd  -G tennis -p password natasha
+   12  usermod  -G tennis -p password natasha
+   13  useradd -s /sbin/nologin -p password sarah
+   14  cp /etc/fstab /var/tmp/
+   15  cd /var/tmp/
+   16  ll
+   17  chgrp tennis fstab
+   18  ll
+   19  chmod 674 fstab
+   20  setfacl -m u:natasha:rw- fstab
+   21  getfacl fstab
+   22  setfacl -m u:harry:--- fstab
+   23  setfacl - u:harry:--- fstab
+   24  setfacl -m  u:harry:--- fstab
+   25  useradd harry
+   26  setfacl -m  u:harry:--- fstab
+   27  getfacl fstab.
+
+    2) Create the /root/finde folder, Find  all files by keeping all the permissions owned by "jack" user, and copy to /root/finde folder
+    answer; mkdir finde,  find / -type f -user natasha -exec cp -pr {} finde/ \;
+
+     3) Create cronjob for user "natasha" and job start time is 14:23. 
+Job is "echo hello.
+     1) crontab -e -u natasha,  23 14 * * *  /bin/echo hello  :wq
+     2) crontab  -lu natasha
+
+     4) Create Directory /home/testdir owned by "sharegrp" group with "RW" permissions. 
+Any file created should be owned by group
+   33  mkdir /home/testdir
+   34  chown -R :tennis /home/testdir/
+   35  ll -d /home/testdir/
+   36  touch /home/testdir/test1
+   37  ll  /home/testdir/
+   38  chmod 2764 /home/testdir/
+   39  touch /home/testdir/test2
+   40  ll /home/testdir/
